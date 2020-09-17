@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<link rel="stylesheet" type="text/css" href="check2.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script type="text/javascript">
+ function openNav() {
+       
+   var x = document.getElementById("mySidenav");
+        var j=document.getElementById("dropdown_id");
+        var k=document.getElementById("dropdown_id2");    
+        var y=window.innerWidth;
+        if(x.style.width=="15%"||x.style.width=="60%")
+        {
+           x.style.width="0%";
+           x.style.padding="0";
+           j.style.display="none";
+           k.style.display="none";
+     
+        }
+        else if(y<="500")
+        {
+          x.style.display="block";
+           x.style.width = "60%";
+           x.style.position="fixed";
+           x.style.padding="10px";
+            j.style.display="block";
+           k.style.display="block";
+        }
+        else
+        { 
+           x.style.width = "15%";
+          x.style.display="block";
+           x.style.padding="10px";
+           x.style.position="fixed";
+           j.style.display="block";
+           k.style.display="block";
+        }
+     
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+<body>
+<button onclick="openNav()">click</button>
+<div id="mySidenav" class="sidenav">
+	<div class="dropdown" id="dropdown_id">
+  <button class="dropbtn">Dropdown<span class="glyphicon glyphicon-menu-right" id="spans" ></span></button>
+  <div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+<br>
+<div class="dropdown" id="dropdown_id2">
+  <button class="dropbtn">Dropdown<span class="glyphicon glyphicon-menu-right" id="spans" ></span></button>
+  <div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+</div>
+</body>
+</html>
