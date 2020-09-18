@@ -192,8 +192,6 @@
 
 		$username = esc($request_values['username']);
 		$email = esc($request_values['email']);
-		$password = esc($request_values['password']);
-		$passwordConfirmation = esc($request_values['passwordConfirmation']);
 
 		if(isset($request_values['role_id'])){
 			$role_id = $request_values['role_id'];
@@ -202,9 +200,8 @@
 		// register user if there are no errors in the form
 		if (count($errors) == 0) {
 			//encrypt the password (security purposes)
-			$password = md5($password);
 
-			$query = "UPDATE users SET username='$username', email='$email', password='$password' WHERE id=$admin_id";
+			$query = "UPDATE users SET username='$username', email='$email' WHERE id=$admin_id";
 			mysqli_query($conn, $query);
 
 			// Assign role to admin user
