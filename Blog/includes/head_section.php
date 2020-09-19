@@ -6,5 +6,8 @@
 	<!-- Styling for public area -->
 	<link rel="stylesheet" href="static/css/public_styling.css">
 	<link rel="stylesheet" href="static/css/banner.css">
+	<link rel="stylesheet" href="static/css/allposts.css">
+	<link rel="stylesheet" href="static/css/postDetails.css">
+	<link rel="stylesheet" href="static/css/errors.css">
 
     <meta charset="UTF-8">
