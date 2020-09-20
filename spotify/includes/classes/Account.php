@@ -31,7 +31,6 @@ class Account {
         $profilePic='assets/images/profile_pics/images.jpg';
         $date=date('y-m-d');
         $result = mysqli_query($this->con, "INSERT INTO users ( `username`, `firstName`, `lastName`, `email`, `password`, `signUpDate`, `profilePic`) VALUES ( '$un', '$fn', '$ln', '$em', '$encryptedPw', '$date', '$profilePic')");
-        echo $result;
         return $result;
     }
 
@@ -40,7 +39,11 @@ class Account {
             array_push($this->errorArray,Constants::$usernameCharacters);
             return;
         }
-        //todo: check if username already exists
+        $checkUsernameQuery=mysqli_query($this->con,"SELECT username FROM users WHERE username='$un'");
+        if(mysqli_num_rows($checkUsernameQuery)!=0){
+            array_push($this->errorArray,Constants::$usernameTaken);
+            return ;
+        }
     }
     private function validateFirstName($fn){
         if (strlen($fn)>25 || strlen($fn)<2){
@@ -63,7 +66,11 @@ class Account {
             array_push($this->errorArray,Constants::$emailInvalid);
             return ;
         }
-        //todo :email already exists
+        $checkEmailQuery=mysqli_query($this->con,"SELECT email FROM users WHERE email='$em'");
+        if(mysqli_num_rows($checkEmailQuery)!=0){
+            array_push($this->errorArray,Constants::$emailTaken);
+            return ;
+        }
     }
     private function validatePasswords($pw,$pw2){
         if($pw != $pw2){

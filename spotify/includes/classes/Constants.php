@@ -9,6 +9,8 @@ class Constants{
     public static $lastNameCharacters='Your lastname must be greater than 2 and smaller than 25 characters';
     public static $firstNameCharacters='Your firstname must be greater than 2 and smaller than 25 characters';
     public static $usernameCharacters='Your username must be greater than 5 and smaller than 25 characters';
+    public static $usernameTaken='Username already taken';
+    public static $emailTaken='Email already taken';
 
 }
 ?>
