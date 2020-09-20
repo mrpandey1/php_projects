@@ -9,7 +9,7 @@ function sanitizeFormString($inputText){
     $inputText=strip_tags($inputText);
     $inputText=str_replace(' ','',$inputText);
     $inputText=ucfirst(strtolower($inputText));
-    return $inputText;
+    return $inputText
 }
 
 if(isset($_POST['loginButton'])){
