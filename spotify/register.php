@@ -1,35 +1,5 @@
 <?php
-
-function sanitizeFormUsername($inputText){
-    $inputText=strip_tags($inputText);
-    $inputText=str_replace(' ','',$inputText);
-    return $inputText;
-}
-function sanitizeFormString($inputText){
-    $inputText=strip_tags($inputText);
-    $inputText=str_replace(' ','',$inputText);
-    $inputText=ucfirst(strtolower($inputText));
-    return $inputText;
-}
-
-if(isset($_POST['loginButton'])){
-    echo 'login button was pressed';
-}
-if(isset($_POST['registerButton'])){
-    $username=$_POST['username'];
-    $username=strip_tags($username);
-    $username=str_replace(' ','',$username);
-
-    $firstName=$_POST['firstName'];
-    $firstName=strip_tags($firstName);
-    $firstName=str_replace(' ','',$firstName);
-    $firstName=ucfirst(strtolower($firstName));
-
-    $lastName=$_POST['lastName'];
-    $lastName=strip_tags($lastName);
-    $lastName=str_replace(' ','',$lastName);
-    $lastName=ucfirst(strtolower($lastName));
-}
+include('includes/handlers/register-handler.php');
 ?>
 <html lang="en">
 <head>
@@ -43,7 +13,8 @@ if(isset($_POST['registerButton'])){
     <form action="register.php" id="loginForm" method="POST">
             <h2> Login to spotify </h2>
             <p>
-                <label for='loginUsername'>Username</label>
+                <label
+    $password=sanitizeFormPassword($_POST['password']); for='loginUsername'>Username</label>
                 <input id='loginUsername' name='loginUsername' placeholder="e.g nishh" required type="text">
             </p>
             <p>
