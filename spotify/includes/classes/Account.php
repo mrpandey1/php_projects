@@ -10,7 +10,21 @@ class Account {
         $this->validateLastName($ln);
         $this->validateEmails($em,$em);
         $this->validatePasswords($pw,$pw2);
+        if(empty($this->errorArray)==true){
+            //Insert into database
+            return true;
+        }else{
+            return false;
+        }
     }
+
+    public function getError($error){
+        if(!in_array($error,$this->errorArray)){
+            $error='';
+        }
+        return "<span class='errorMessage'>$error</span>";
+    }
+
     private function validateUsername($un){
         if (strlen($un)>25 || strlen($un)<5){
             array_push($this->errorArray,'Your username must be greater than 5 and smaller than 25 characters');
@@ -44,7 +58,7 @@ class Account {
     private function validatePasswords($pw,$pw2){
         if($pw != $pw2){
             array_push($this->errorArray,"Passwords don't match");
-            return;
+            return; 
         }
         if(preg_match('/[^A-Za-z0-9]/',$pw)){
             array_push($this->errorArray,"Passwords can only contain numbers an letters");

@@ -17,8 +17,7 @@ include('includes/handlers/login-handler.php');
     <form action="register.php" id="loginForm" method="POST">
             <h2> Login to spotify </h2>
             <p>
-                <label
-    $password=sanitizeFormPassword($_POST['password']); for='loginUsername'>Username</label>
+                <label for='loginUsername'>Username</label>
                 <input id='loginUsername' name='loginUsername' placeholder="e.g nishh" required type="text">
             </p>
             <p>
@@ -32,18 +31,23 @@ include('includes/handlers/login-handler.php');
         <form action="register.php" id="registrationForm" method="POST">
             <h2> Create your free account </h2>
             <p>
+                <?php echo $account->getError('Your username must be greater than 5 and smaller than 25 characters'); ?>
                 <label for='username'>Username</label>
                 <input id='username' name='username' placeholder="e.g nishh" required type="text">
             </p>
             <p>
+                <?php echo $account->getError('Your firstname must be greater than 2 and smaller than 25 characters'); ?>
                 <label for='firstName'>First name</label>
                 <input id='firstName' name='firstName' placeholder="e.g Nishant" required type="text">
             </p>
             <p>
+                <?php echo $account->getError('Your lastname must be greater than 2 and smaller than 25 characters'); ?>
                 <label for='lastName'>Last name</label>
                 <input id='lastName' name='lastName' placeholder="e.g Pandey" required type="text">
             </p>
             <p>
+                <?php echo $account->getError("Emails don't match"); ?>
+                <?php echo $account->getError("Emails is invalid"); ?>
                 <label for='email'>Email</label>
                 <input id='email' name='email' placeholder="e.g abc@gmail.com" required type="email">
             </p>
@@ -52,6 +56,9 @@ include('includes/handlers/login-handler.php');
                 <input id='email2' name='email2' placeholder="e.g abc@gmail.com" required type="email">
             </p>
             <p>
+                <?php echo $account->getError("Passwords don't match"); ?> 
+                <?php echo $account->getError("Passwords can only contain numbers an letters"); ?>
+                <?php echo $account->getError("Password must be between 5 and 30 characters"); ?>
                 <label for='password'>Password</label>
                 <input id='password' name='password' required type="password">
             </p>
