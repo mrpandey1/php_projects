@@ -27,6 +27,7 @@ function getInputValue($name){
     <form action="register.php" id="loginForm" method="POST">
             <h2> Login to spotify </h2>
             <p>
+                <?php echo $account->getError(Constants::$loginFailed); ?><?php echo $account->getError(Constants::$usernameTaken); ?>
                 <label for='loginUsername'>Username</label>
                 <input id='loginUsername' name='loginUsername' placeholder="e.g nishh" required type="text">
             </p>

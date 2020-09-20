@@ -6,6 +6,18 @@ class Account {
         $this->con=$con;
         $this->errorArray=array();
     }
+
+    public function login($un,$pw){
+        $pw=md5($pw);
+        $query=mysqli_query($this->con,"SELECT * from users where username='$un' AND password='$pw'");
+
+        if(mysqli_num_rows($query)==1){
+            return true;
+        }
+        array_push($this->errorArray,Constants::$loginFailed);
+        return false;
+    }
+
     public function register($un,$fn,$ln,$em,$em2,$pw,$pw2){
         $this->validateUsername($un);
         $this->validateFirstName($fn);
