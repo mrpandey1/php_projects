@@ -4,11 +4,11 @@ class Account {
     public function __construct(){
         $this->errorArray=array();
     }
-    public function register($un,$fn,$ln,$em,$wm2,$pw,$pw2){
+    public function register($un,$fn,$ln,$em,$em2,$pw,$pw2){
         $this->validateUsername($un);
         $this->validateFirstName($fn);
         $this->validateLastName($ln);
-        $this->validateEmails($em,$em);
+        $this->validateEmails($em,$em2);
         $this->validatePasswords($pw,$pw2);
         if(empty($this->errorArray)==true){
             //Insert into database
@@ -27,45 +27,45 @@ class Account {
 
     private function validateUsername($un){
         if (strlen($un)>25 || strlen($un)<5){
-            array_push($this->errorArray,'Your username must be greater than 5 and smaller than 25 characters');
+            array_push($this->errorArray,Constants::$usernameCharacters);
             return;
         }
         //todo: check if username already exists
     }
     private function validateFirstName($fn){
         if (strlen($fn)>25 || strlen($fn)<2){
-            array_push($this->errorArray,'Your firstname must be greater than 2 and smaller than 25 characters');
+            array_push($this->errorArray,Constants::$firstNameCharacters);
             return;
         }
     }
     private function validateLastName($ln){
         if (strlen($ln)>25 || strlen($ln)<2){
-            array_push($this->errorArray,'Your lastname must be greater than 2 and smaller than 25 characters');
+            array_push($this->errorArray,Constants::$lastNameCharacters);
             return;
         }
     }
     private function validateEmails($em,$em2){
         if($em != $em2){
-            array_push($this->errorArray,"Emails don't match");
+            array_push($this->errorArray,Constants::$emailsDoNotMatch);
             return;
         }
         if(!filter_var($em,FILTER_VALIDATE_EMAIL)){
-            array_push($this->errorArray,"Emails is invalid");
+            array_push($this->errorArray,Constants::$emailInvalid);
             return ;
         }
         //todo :email already exists
     }
     private function validatePasswords($pw,$pw2){
         if($pw != $pw2){
-            array_push($this->errorArray,"Passwords don't match");
+            array_push($this->errorArray,Constants::$passwordDoNotMatch);
             return; 
         }
         if(preg_match('/[^A-Za-z0-9]/',$pw)){
-            array_push($this->errorArray,"Passwords can only contain numbers an letters");
+            array_push($this->errorArray,Constants::$passwordNotAlphanumeric);
             return;
         }
         if(strlen($pw)>30 || strlen($pw)<0){
-            array_push($this->errorArray,"Password must be between 5 and 30 characters");
+            array_push($this->errorArray,Constants::$passwordCharacters);
             return;
         }
     }
