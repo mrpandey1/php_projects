@@ -57,7 +57,7 @@
 					<p>
 						<?php echo $account->getError(Constants::$loginFailed); ?>
 						<label for="loginUsername">Username</label>
-						<input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" required>
+						<input id="loginUsername" name="loginUsername" value="<?php getInputValue('loginUsername') ?>" type="text" placeholder="e.g. bartSimpson" required>
 					</p>
 					<p>
 						<label for="loginPassword">Password</label>
@@ -128,8 +128,15 @@
 					</div>
 					
 				</form>
-
-
+			</div>
+			<div id='loginText'>
+				<h1>Get great music, right now</h1>
+				<h2>Listen to loads of songs for free</h2>
+				<ul>
+					<li>Discover music you'll fall in love</li>
+					<li>Create your own playlists</li>
+					<li>Follow artists to keep up date</li>
+				</ul>
 			</div>
 		</div>
 	</div>
