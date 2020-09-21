@@ -21,6 +21,8 @@ function getInputValue($name){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to spotify</title>
     <link rel="stylesheet" href="assets/css/register.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="assets/js/register.js"></script>
 </head>
 <body>
     <div id="background">
@@ -41,6 +43,10 @@ function getInputValue($name){
                             <input id='loginPassword' name='loginPassword' required type="password">
                         </p>
                         <button type='submit' name='loginButton'>Login</button>
+
+                        <div class="hasAccountText">
+                            <span id="hideLogin">Don't have an account ? Signup here</span>
+                        </div>
                 </form>
                     
                 <!--Registration form -->
@@ -85,6 +91,9 @@ function getInputValue($name){
                             <input id='password2' name='password2' required type="password">
                         </p>
                         <button type='submit' name='registerButton'>Register</button>
+                        <div class="hasAccountText">
+                            <span id="hideRegister">Already have an account ? Login here</span>
+                        </div>
                 </form>
             </div>
         </div>
