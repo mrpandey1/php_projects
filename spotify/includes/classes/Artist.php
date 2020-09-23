@@ -1,3 +1,4 @@
+
 <?php
 class Artist{
     private $con;
