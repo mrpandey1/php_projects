@@ -17,8 +17,8 @@ class Song{
         $query=mysqli_query($this->con,"SELECT * from Songs where id='$this->id'");
         $this->mysqliData=mysqli_fetch_array($query);
         $this->title=$this->mysqliData['title'];
-        $this->artistId=$this->mysqliData['artistId'];
-        $this->albumId=$this->mysqliData['albumId'];
+        $this->artistId=$this->mysqliData['artist'];
+        $this->albumId=$this->mysqliData['album'];
         $this->genre=$this->mysqliData['genre'];
         $this->duration=$this->mysqliData['duration'];
         $this->path=$this->mysqliData['path'];
@@ -27,7 +27,7 @@ class Song{
     public function getTitle(){
         return $this->title;
     }
-    public function artist(){
+    public function getArtist(){
         return new Artist($this->con,$this->artistId);
     }
     public function getAlbum(){
