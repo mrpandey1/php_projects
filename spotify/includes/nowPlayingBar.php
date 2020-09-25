@@ -16,7 +16,9 @@
     function setTrack(trackId,newPlayList,play){
 
         $.post("includes/handlers/ajax/getSongjson.php",{ songId:trackId  },function(data){
-            console.log(data);
+            var track=JSON.parse(data);
+            audioElement.setTrack(track.path);
+            audioElement.play();
         });
 
         if(play){
