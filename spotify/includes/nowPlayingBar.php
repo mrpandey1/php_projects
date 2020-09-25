@@ -14,7 +14,21 @@
     setTrack(currentPlaylist[0],currentPlaylist,false);
     });
     function setTrack(trackId,newPlayList,play){
- 
+        audioElement.setTrack('assets/music/bensound-betterdays.mp3');
+        if(play){
+            audioElement.play();
+        }
+    }
+
+    function playSong(){
+        $('.controlButton.play').hide();
+        $('.controlButton.pause').show();
+        audioElement.play();
+    }
+    function pauseSong(){
+        $('.controlButton.pause').hide();
+        $('.controlButton.play').show();
+        audioElement.pause();
     }
 
 </script>
@@ -44,8 +58,11 @@
                             <button class='controlButton previous' title="previous button">
                                 <img src="assets/images/icons/previous.png">
                             </button>
-                            <button class='controlButton play' title="play button">
+                            <button class='controlButton play' onclick="playSong()" title="play button">
                                 <img src="assets/images/icons/play.png">
+                            </button>
+                            <button class='controlButton pause' onclick="pauseSong()" style="display: none;" title="pause button">
+                                <img src="assets/images/icons/pause.png">
                             </button>
                             <button class='controlButton next' title="next button">
                                 <img src="assets/images/icons/next.png">
