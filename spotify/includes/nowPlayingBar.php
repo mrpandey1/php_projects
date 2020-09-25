@@ -7,7 +7,16 @@
     $jsonArray=json_encode($resultArray);
 ?>
 <script>
-    console.log(<?php echo $jsonArray ?>);
+    $(document).ready(function(){
+    currentPlaylist=<?php echo $jsonArray ?>;
+    console.log(currentPlaylist);
+    audioElement=new Audio(); 
+    setTrack(currentPlaylist[0],currentPlaylist,false);
+    });
+    function setTrack(trackId,newPlayList,play){
+ 
+    }
+
 </script>
 
 <div id='nowPlayingBarContainer'>
