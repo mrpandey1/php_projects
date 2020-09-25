@@ -14,7 +14,11 @@
     setTrack(currentPlaylist[0],currentPlaylist,false);
     });
     function setTrack(trackId,newPlayList,play){
-        audioElement.setTrack('assets/music/bensound-betterdays.mp3');
+
+        $.post("includes/handlers/ajax/getSongjson.php",{ songId:trackId  },function(data){
+            console.log(data);
+        });
+
         if(play){
             audioElement.play();
         }
