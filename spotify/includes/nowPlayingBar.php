@@ -16,7 +16,12 @@
     function setTrack(trackId,newPlayList,play){
 
         $.post("includes/handlers/ajax/getSongjson.php",{ songId:trackId  },function(data){
-            var track=JSON.parse(data);
+            var track=JSON.parse(data); 
+            $(".trackName span").text(track.title);
+            $.post("includes/handlers/ajax/getArtistjson.php",{ artistId:track.artist  },function(data){
+                var artist=JSON.parse(data); 
+                $(".artistName span").text(artist.name);
+            }); 
             audioElement.setTrack(track.path);
             audioElement.play();
         });
@@ -47,10 +52,10 @@
                         </span>
                         <div class="trackInfo">
                             <span class="trackName">
-                                <span>Happy Birthday</span>
+                                <span></span>
                             </span>
                             <span class="artistName">
-                                <span>Nishant Pandey</span>
+                                <span></span>
                             </span>
                         </div>
                     </div>
