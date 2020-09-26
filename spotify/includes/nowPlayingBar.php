@@ -90,6 +90,12 @@ function nextSong(){
 	setTrack(trackToPlay,currentPlaylist,true);
 }
 
+function setRepeat(){
+	repeat=!repeat;
+	var imageName=repeat ? 'repeat-active.png':'repeat.png';
+	$(".controlButton.repeat img").attr('src','assets/images/icons/'+imageName);
+}
+
 function setTrack(trackId, newPlaylist, play) {
 
 	currentIndex=currentPlaylist.indexOf(trackId);
@@ -108,7 +114,6 @@ function setTrack(trackId, newPlaylist, play) {
 			var album = JSON.parse(data);
 			$(".albumLink img").attr("src", album.artworkPath);
 		});
-
 
 		audioElement.setTrack(track);
 		playSong();
@@ -178,7 +183,7 @@ function pauseSong() {
 						<img src="assets/images/icons/next.png" alt="Next">
 					</button>
 
-					<button class="controlButton repeat" title="Repeat button">
+					<button class="controlButton repeat" title="Repeat button" onclick="setRepeat()">
 						<img src="assets/images/icons/repeat.png" alt="Repeat">
 					</button>
 				</div>
