@@ -18,6 +18,10 @@ $(document).ready(function() {
 	setTrack(currentPlaylist[0], currentPlaylist, false);
 	updateVolumeProgressBar(audioElement.audio);
 
+	$('#nowPlayingBarContainer').on('mousedown touchstart mousemove touchdown',function(e){
+		e.preventDefault();
+	});
+
 	$(".playbackBar .progressBar").mousedown(function() {
 		mouseDown = true;
 	});
@@ -61,9 +65,6 @@ $(document).ready(function() {
 		mouseDown = false;
 	});
 
-
-
-
 });
 
 function timeFromOffset(mouse, progressBar) {
@@ -72,9 +73,27 @@ function timeFromOffset(mouse, progressBar) {
 	audioElement.setTime(seconds);
 }
 
+function nextSong(){
+
+	if (repeat){
+		audioElement.setTime(0);
+		playSong();
+		return;
+	}
+
+	if(currentIndex==currentPlaylist.length-1){
+		currentIndex=0
+	}else{
+		currentIndex++;
+	}
+	var trackToPlay=currentPlaylist[currentIndex];
+	setTrack(trackToPlay,currentPlaylist,true);
+}
 
 function setTrack(trackId, newPlaylist, play) {
 
+	currentIndex=currentPlaylist.indexOf(trackId);
+	pauseSong();
 	$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
 
 		var track = JSON.parse(data);
@@ -119,40 +138,26 @@ function pauseSong() {
 
 </script>
 
-
 <div id="nowPlayingBarContainer">
-
 	<div id="nowPlayingBar">
-
 		<div id="nowPlayingLeft">
 			<div class="content">
 				<span class="albumLink">
 					<img src="" class="albumArtwork">
 				</span>
-
 				<div class="trackInfo">
-
 					<span class="trackName">
 						<span></span>
 					</span>
-
 					<span class="artistName">
 						<span></span>
 					</span>
-
 				</div>
-
-
-
 			</div>
 		</div>
-
 		<div id="nowPlayingCenter">
-
 			<div class="content playerControls">
-
 				<div class="buttons">
-
 					<button class="controlButton shuffle" title="Shuffle button">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>
@@ -169,36 +174,24 @@ function pauseSong() {
 						<img src="assets/images/icons/pause.png" alt="Pause">
 					</button>
 
-					<button class="controlButton next" title="Next button">
+					<button class="controlButton next" onclick="nextSong()" title="Next button">
 						<img src="assets/images/icons/next.png" alt="Next">
 					</button>
 
 					<button class="controlButton repeat" title="Repeat button">
 						<img src="assets/images/icons/repeat.png" alt="Repeat">
 					</button>
-
 				</div>
-
-
 				<div class="playbackBar">
-
 					<span class="progressTime current">0.00</span>
-
 					<div class="progressBar">
 						<div class="progressBarBg">
 							<div class="progress"></div>
 						</div>
 					</div>
-
 					<span class="progressTime remaining">0.00</span>
-
-
 				</div>
-
-
 			</div>
-
-
 		</div>
 
 		<div id="nowPlayingRight">
