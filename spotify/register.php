@@ -57,7 +57,7 @@
 					<p>
 						<?php echo $account->getError(Constants::$loginFailed); ?>
 						<label for="loginUsername">Username</label>
-						<input id="loginUsername" name="loginUsername" value="<?php getInputValue('loginUsername') ?>" type="text" placeholder="e.g. bartSimpson" required>
+						<input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" value="<?php getInputValue('loginUsername') ?>" required>
 					</p>
 					<p>
 						<label for="loginPassword">Password</label>
@@ -109,7 +109,7 @@
 					</p>
 
 					<p>
-						<?php echo $account->getError(Constants::$passwordDoNotMatch); ?>
+						<?php echo $account->getError(Constants::$passwordsDoNoMatch); ?>
 						<?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>
 						<?php echo $account->getError(Constants::$passwordCharacters); ?>
 						<label for="password">Password</label>
@@ -128,16 +128,20 @@
 					</div>
 					
 				</form>
+
+
 			</div>
-			<div id='loginText'>
+
+			<div id="loginText">
 				<h1>Get great music, right now</h1>
 				<h2>Listen to loads of songs for free</h2>
 				<ul>
-					<li>Discover music you'll fall in love</li>
+					<li>Discover music you'll fall in love with</li>
 					<li>Create your own playlists</li>
-					<li>Follow artists to keep up date</li>
+					<li>Follow artists to keep up to date</li>
 				</ul>
 			</div>
+
 		</div>
 	</div>
 

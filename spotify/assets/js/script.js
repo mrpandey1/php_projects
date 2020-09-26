@@ -1,16 +1,23 @@
-var currentPlaylist=[];
+var currentPlaylist = [];
 var audioElement;
-function Audio(){
-    this.currentlyPlaying;
-    this.audio=document.createElement('audio');
 
-    this.setTrack=function(src){
-        this.audio.src=src;
-    }
-    this.play=function(){
-        this.audio.play();
-    }
-    this.pause=function(){
-        this.audio.pause();
-    }
+
+function Audio() {
+
+	this.currentlyPlaying;
+	this.audio = document.createElement('audio');
+
+	this.setTrack = function(track) {
+		this.currentlyPlaying = track;
+		this.audio.src = track.path;
+	}
+
+	this.play = function() {
+		this.audio.play();
+	}
+
+	this.pause = function() {
+		this.audio.pause();
+	}
+
 }

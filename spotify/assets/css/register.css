@@ -7,7 +7,7 @@ body {
 
 #background {
 	background-color: #000;
-    background-image: url(../images/bg1.jpg);
+    background-image: url(../images/bg.jpg);
     background-position: center;
     background-size: cover;
     display: table;
@@ -69,14 +69,13 @@ body {
     height: 27px;
     line-height: 27px;
     width: 100%;
-    outline: none;
 }
 
 #inputContainer label {
 	color: #a0a0a0;
     font-size: 13px;
-    display: block;
     margin-top: 15px;
+    display: block;
 }
 
 #inputContainer button {
@@ -99,10 +98,9 @@ body {
 .hasAccountText span {
 	font-weight: bold;
     font-size: 12px;
-}
-.hasAccountText span:hover{
     cursor: pointer;
 }
+
 .hasAccountText {
 	text-align: center;
 }
@@ -112,31 +110,34 @@ body {
 	display: none;
 }
 
-#loginText{
+#loginText {
     padding: 45px;
     display: table-cell;
 }
-#loginText h1{
-    color:#07d159;
+
+#loginText h1 {
+    color: #07d159;
     font-size: 60px;
     font-weight: bold;
 }
 
-#loginText h2{
-    margin:35px 0;
+#loginText h2 {
+    margin: 35px 0;
 }
-#loginText ul{
+
+#loginText ul {
     padding: 0;
 }
-#loginText li{
+
+#loginText li {
     font-size: 20px;
     list-style-type: none;
     padding: 5px 30px;
-    background:url(../images/icons/tick.png) no-repeat;
+    background: url(../images/icons/checkmark.png) no-repeat 0 0;
 }
 
-#inputContainer .errorMessage{
-    color:#07d159;
+#inputContainer .errorMessage {
+    color: #07d159;
     font-size: 12px;
     display: block;
 }
