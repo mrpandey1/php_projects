@@ -90,6 +90,30 @@ function nextSong(){
 	setTrack(trackToPlay,currentPlaylist,true);
 }
 
+function nextSong(){
+	if (repeat){
+		audioElement.setTime(0);
+		playSong();
+		return;
+	}
+	if(currentIndex==currentPlaylist.length-1){
+		currentIndex=0
+	}else{
+		currentIndex++;
+	}
+	var trackToPlay=currentPlaylist[currentIndex];
+	setTrack(trackToPlay,currentPlaylist,true);
+}
+
+function prevSong(){
+	if(audioElement.audio.currentTime>=3 || currentIndex==0){
+		audioElement.setTime(0);
+	}else{
+	currentIndex--;
+	var trackToPlay=currentPlaylist[currentIndex];
+	setTrack(trackToPlay,currentPlaylist,true)
+	}
+}
 function setRepeat(){
 	repeat=!repeat;
 	var imageName=repeat ? 'repeat-active.png':'repeat.png';
@@ -167,7 +191,7 @@ function pauseSong() {
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>
 
-					<button class="controlButton previous" title="Previous button">
+					<button class="controlButton previous" onclick="prevSong()" title="Previous button">
 						<img src="assets/images/icons/previous.png" alt="Previous">
 					</button>
 
