@@ -8,7 +8,10 @@
 		$albumQuery = mysqli_query($con, "SELECT * FROM albums ORDER BY RAND() LIMIT 10");
 
 		while($row = mysqli_fetch_array($albumQuery)) {
-		
+			
+
+
+
 			echo "<div class='gridViewItem'>
 					<a href='album.php?id=" . $row['id'] . "'>
 						<img src='" . $row['artworkPath'] . "'>
@@ -19,6 +22,8 @@
 					</a>
 
 				</div>";
+
+
 
 		}
 	?>

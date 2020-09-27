@@ -32,26 +32,33 @@ $artist = $album->getArtist();
 		
 		<?php
 		$songIdArray = $album->getSongIds();
+
 		$i = 1;
 		foreach($songIdArray as $songId) {
+
 			$albumSong = new Song($con, $songId);
 			$albumArtist = $albumSong->getArtist();
 
 			echo "<li class='tracklistRow'>
 					<div class='trackCount'>
-						<img class='play' onclick='setTrack(\"" . $albumSong->getId()."\",tempPlayList,true)' src='assets/images/icons/play-white.png'>
+						<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
 						<span class='trackNumber'>$i</span>
 					</div>
+
+
 					<div class='trackInfo'>
 						<span class='trackName'>" . $albumSong->getTitle() . "</span>
 						<span class='artistName'>" . $albumArtist->getName() . "</span>
 					</div>
+
 					<div class='trackOptions'>
 						<img class='optionsButton' src='assets/images/icons/more.png'>
 					</div>
+
 					<div class='trackDuration'>
 						<span class='duration'>" . $albumSong->getDuration() . "</span>
 					</div>
+
 
 				</li>";
 
@@ -59,10 +66,11 @@ $artist = $album->getArtist();
 		}
 
 		?>
-	<script>
-		var tempSongIds='<?php  echo json_encode($songIdArray);?>';
-		tempPlayList=JSON.parse(tempSongIds);
-	</script>
+
+		<script>
+			var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
+			tempPlaylist = JSON.parse(tempSongIds);
+		</script>
 
 	</ul>
 </div>

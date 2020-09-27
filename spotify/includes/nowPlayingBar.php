@@ -13,14 +13,16 @@ $jsonArray = json_encode($resultArray);
 <script>
 
 $(document).ready(function() {
-	var newPlayList = <?php echo $jsonArray; ?>;
+	var newPlaylist = <?php echo $jsonArray; ?>;
 	audioElement = new Audio();
-	setTrack(newPlayList[0], newPlayList, false);
+	setTrack(newPlaylist[0], newPlaylist, false);
 	updateVolumeProgressBar(audioElement.audio);
 
-	$('#nowPlayingBarContainer').on('mousedown touchstart mousemove touchdown',function(e){
+
+	$("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function(e) {
 		e.preventDefault();
 	});
+
 
 	$(".playbackBar .progressBar").mousedown(function() {
 		mouseDown = true;
@@ -65,6 +67,9 @@ $(document).ready(function() {
 		mouseDown = false;
 	});
 
+
+
+
 });
 
 function timeFromOffset(mouse, progressBar) {
@@ -73,92 +78,91 @@ function timeFromOffset(mouse, progressBar) {
 	audioElement.setTime(seconds);
 }
 
+function prevSong() {
+	if(audioElement.audio.currentTime >= 3 || currentIndex == 0) {
+		audioElement.setTime(0);
+	}
+	else {
+		currentIndex = currentIndex - 1;
+		setTrack(currentPlaylist[currentIndex], currentPlaylist, true);
+	}
+}
 
-function nextSong(){
-
-	if (repeat){
+function nextSong() {
+	if(repeat == true) {
 		audioElement.setTime(0);
 		playSong();
 		return;
 	}
 
-	if(currentIndex==currentPlaylist.length-1){
-		currentIndex=0
-	}else{
+	if(currentIndex == currentPlaylist.length - 1) {
+		currentIndex = 0;
+	}
+	else {
 		currentIndex++;
 	}
-	var trackToPlay=currentPlaylist[currentIndex];
-	setTrack(trackToPlay,currentPlaylist,true);
+
+	var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
+	setTrack(trackToPlay, currentPlaylist, true);
 }
 
-function nextSong(){
-	if (repeat){
-		audioElement.setTime(0);
-		playSong();
-		return;
-	}
-	if(currentIndex==currentPlaylist.length-1){
-		currentIndex=0
-	}else{
-		currentIndex++;
-	}
-	var trackToPlay=shuffle ?shufflePlayList[currentIndex]: currentPlaylist[currentIndex];
-	setTrack(trackToPlay,currentPlaylist,true);
+function setRepeat() {
+	repeat = !repeat;
+	var imageName = repeat ? "repeat-active.png" : "repeat.png";
+	$(".controlButton.repeat img").attr("src", "assets/images/icons/" + imageName);
 }
 
-function prevSong(){
-	if(audioElement.audio.currentTime>=3 || currentIndex==0){
-		audioElement.setTime(0);
-	}else{
-	currentIndex--;
-	var trackToPlay=currentPlaylist[currentIndex];
-	setTrack(trackToPlay,currentPlaylist,true)
-	}
-}
-function setRepeat(){
-	repeat=!repeat;
-	var imageName=repeat ? 'repeat-active.png':'repeat.png';
-	$(".controlButton.repeat img").attr('src','assets/images/icons/'+imageName);
-}
-function setMute(){
-	audioElement.audio.muted=!audioElement.audio.muted;
-	var imageName=audioElement.audio.muted ? 'volume-mute.png':'volume.png';
-	$(".controlButton.volume img").attr('src','assets/images/icons/'+imageName);
-}
-function setShuffle(){
-	shuffle=!shuffle;
-	var imageName=shuffle ? 'shuffle-active.png':'shuffle.png';
-	$(".controlButton.shuffle img").attr('src','assets/images/icons/'+imageName);
-	if(shuffle==true){
-		shuffleArray(shufflePlayList);
-		currentIndex=shufflePlayList.indexOf(audioElement.currentlyPlaying.id);
-	}else{
-		currentIndex=currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
-	}
+function setMute() {
+	audioElement.audio.muted = !audioElement.audio.muted;
+	var imageName = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
+	$(".controlButton.volume img").attr("src", "assets/images/icons/" + imageName);
 }
 
-function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+function setShuffle() {
+	shuffle = !shuffle;
+	var imageName = shuffle ? "shuffle-active.png" : "shuffle.png";
+	$(".controlButton.shuffle img").attr("src", "assets/images/icons/" + imageName);
+
+	if(shuffle == true) {
+		//Randomize playlist
+		shuffleArray(shufflePlaylist);
+		currentIndex = shufflePlaylist.indexOf(audioElement.currentlyPlaying.id);
+	}
+	else {
+		//shuffle has been deactivated
+		//go back to regular playlist
+		currentIndex = currentPlaylist.indexOf(audioElement.currentlyPlaying.id);
+	}
+
+}
+
+function shuffleArray(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
     }
 }
 
+
 function setTrack(trackId, newPlaylist, play) {
 
-	if(newPlaylist!=currentPlaylist){
-		currentPlaylist=newPlaylist;
-		shufflePlayList=currentPlaylist.slice();
-		shuffleArray(shufflePlayList);
+	if(newPlaylist != currentPlaylist) {
+		currentPlaylist = newPlaylist;
+		shufflePlaylist = currentPlaylist.slice();
+		shuffleArray(shufflePlaylist);
 	}
-	if(shuffle==true){
-		currentIndex=shufflePlayList.indexOf(trackId);
-	}else{
-		currentIndex=currentPlaylist.indexOf(trackId);
+
+	if(shuffle == true) {
+		currentIndex = shufflePlaylist.indexOf(trackId);
+	}
+	else {
+		currentIndex = currentPlaylist.indexOf(trackId);
 	}
 	pauseSong();
+
 	$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
 
 		var track = JSON.parse(data);
@@ -174,8 +178,8 @@ function setTrack(trackId, newPlaylist, play) {
 			$(".albumLink img").attr("src", album.artworkPath);
 		});
 
+
 		audioElement.setTrack(track);
-		playSong();
 	});
 
 	if(play == true) {
@@ -202,31 +206,45 @@ function pauseSong() {
 
 </script>
 
+
 <div id="nowPlayingBarContainer">
+
 	<div id="nowPlayingBar">
+
 		<div id="nowPlayingLeft">
 			<div class="content">
 				<span class="albumLink">
 					<img src="" class="albumArtwork">
 				</span>
+
 				<div class="trackInfo">
+
 					<span class="trackName">
 						<span></span>
 					</span>
+
 					<span class="artistName">
 						<span></span>
 					</span>
+
 				</div>
+
+
+
 			</div>
 		</div>
+
 		<div id="nowPlayingCenter">
+
 			<div class="content playerControls">
+
 				<div class="buttons">
-					<button class="controlButton shuffle" onclick="setShuffle()" title="Shuffle button">
+
+					<button class="controlButton shuffle" title="Shuffle button" onclick="setShuffle()">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>
 
-					<button class="controlButton previous" onclick="prevSong()" title="Previous button">
+					<button class="controlButton previous" title="Previous button" onclick="prevSong()">
 						<img src="assets/images/icons/previous.png" alt="Previous">
 					</button>
 
@@ -238,30 +256,42 @@ function pauseSong() {
 						<img src="assets/images/icons/pause.png" alt="Pause">
 					</button>
 
-					<button class="controlButton next" onclick="nextSong()" title="Next button">
+					<button class="controlButton next" title="Next button" onclick="nextSong()">
 						<img src="assets/images/icons/next.png" alt="Next">
 					</button>
 
 					<button class="controlButton repeat" title="Repeat button" onclick="setRepeat()">
 						<img src="assets/images/icons/repeat.png" alt="Repeat">
 					</button>
+
 				</div>
+
+
 				<div class="playbackBar">
+
 					<span class="progressTime current">0.00</span>
+
 					<div class="progressBar">
 						<div class="progressBarBg">
 							<div class="progress"></div>
 						</div>
 					</div>
+
 					<span class="progressTime remaining">0.00</span>
+
+
 				</div>
+
+
 			</div>
+
+
 		</div>
 
 		<div id="nowPlayingRight">
 			<div class="volumeBar">
 
-				<button class="controlButton volume" onclick="setMute()" title="Volume button">
+				<button class="controlButton volume" title="Volume button" onclick="setMute()">
 					<img src="assets/images/icons/volume.png" alt="Volume">
 				</button>
 
