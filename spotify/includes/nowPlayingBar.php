@@ -125,9 +125,33 @@ function setMute(){
 	var imageName=audioElement.audio.muted ? 'volume-mute.png':'volume.png';
 	$(".controlButton.volume img").attr('src','assets/images/icons/'+imageName);
 }
+function setShuffle(){
+	shuffle=!shuffle;
+	var imageName=shuffle ? 'shuffle-active.png':'shuffle.png';
+	$(".controlButton.shuffle img").attr('src','assets/images/icons/'+imageName);
+	if(shuffle==true){
+		shuffleArray(shufflePlayList);
+	}else{
+
+	}
+}
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
 
 function setTrack(trackId, newPlaylist, play) {
 
+	if(newPlaylist!=currentPlaylist){
+		currentPlaylist=newPlaylist;
+		shufflePlayList=currentPlaylist.slice();
+		shuffleArray(shufflePlayList);
+	}
 	currentIndex=currentPlaylist.indexOf(trackId);
 	pauseSong();
 	$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
@@ -193,7 +217,7 @@ function pauseSong() {
 		<div id="nowPlayingCenter">
 			<div class="content playerControls">
 				<div class="buttons">
-					<button class="controlButton shuffle" title="Shuffle button">
+					<button class="controlButton shuffle" onclick="setShuffle()" title="Shuffle button">
 						<img src="assets/images/icons/shuffle.png" alt="Shuffle">
 					</button>
 
