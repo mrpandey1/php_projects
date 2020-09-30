@@ -53,9 +53,8 @@
 			$encryptedPw = md5($pw);
 			$profilePic = "assets/images/profile-pics/head_emerald.png";
 			$date = date("Y-m-d");
-
-			$result = mysqli_query($this->con, "INSERT INTO users VALUES ('', '$un', '$fn', '$ln', '$em', '$encryptedPw', '$date', '$profilePic')");
-
+			$result = mysqli_query($this->con, "INSERT INTO `users`(`username`, `firstName`, `lastName`, `email`, `password`, `signUpDate`, `profilePic`)  VALUES ( '$un', '$fn', '$ln', '$em', '$encryptedPw', '$date', '$profilePic')");
+			echo $result;
 			return $result;
 		}
 
