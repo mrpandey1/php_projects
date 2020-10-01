@@ -15,7 +15,7 @@ $artist=new Artist($con,$artistId);
         <div class="artistInfo">
             <h1 class="artistName"><?php echo $artist->getName(); ?></h1>
             <div class='headerButtons'>
-                <button class='button green'>Play</button>
+                <button class='button green' onclick="playFirstSong()">Play</button>
             </div>
         </div>
     </div>
@@ -58,10 +58,8 @@ $artist=new Artist($con,$artistId);
 			var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
 			tempPlaylist = JSON.parse(tempSongIds);
 		</script>
-
 	</ul>
 </div>
-
 <div class="gridViewContainer">
 <h2>Albums</h2>
 	<?php
