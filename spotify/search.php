@@ -39,47 +39,67 @@ $(function() {
 </script>
 
 <div class="tracklistContainer borderBottom">
-<h2>Songs</h2>
-	<ul class="tracklist">
-		
-		<?php
-        $songsQuery=mysqli_query($con,"SELECT id from songs where title like '%$term%' LIMIT 10");
-        
-        if(mysqli_num_rows($songsQuery)==0){
-            echo "<span class='noResults'>No songs found matching ".$term."</span>";
-        }
-        $songIdArray =array();
-		$i = 1;
-		while($row=mysqli_fetch_array($songsQuery)) {
-            if ($i>10){
-                break;
+    <h2>Songs</h2>
+        <ul class="tracklist">
+            
+            <?php
+            $songsQuery=mysqli_query($con,"SELECT id from songs where title like '%$term%' LIMIT 10");
+            
+            if(mysqli_num_rows($songsQuery)==0){
+                echo "<span class='noResults'>No songs found matching ".$term."</span>";
             }
-            array_push($songIdArray,$row['id']);
-			$albumSong = new Song($con, $row['id']);
-			$albumArtist = $albumSong->getArtist();
-			echo "<li class='tracklistRow'>
-					<div class='trackCount'>
-						<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
-						<span class='trackNumber'>$i</span>
-					</div>
-					<div class='trackInfo'>
-						<span class='trackName'>" . $albumSong->getTitle() . "</span>
-						<span class='artistName'>" . $albumArtist->getName() . "</span>
-					</div>
-					<div class='trackOptions'>
-						<img class='optionsButton' src='assets/images/icons/more.png'>
-					</div>
-					<div class='trackDuration'>
-						<span class='duration'>" . $albumSong->getDuration() . "</span>
-					</div>
-				</li>";
-			$i = $i + 1;
-		}
-		?>
+            $songIdArray =array();
+            $i = 1;
+            while($row=mysqli_fetch_array($songsQuery)) {
+                if ($i>10){
+                    break;
+                }
+                array_push($songIdArray,$row['id']);
+                $albumSong = new Song($con, $row['id']);
+                $albumArtist = $albumSong->getArtist();
+                echo "<li class='tracklistRow'>
+                        <div class='trackCount'>
+                            <img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
+                            <span class='trackNumber'>$i</span>
+                        </div>
+                        <div class='trackInfo'>
+                            <span class='trackName'>" . $albumSong->getTitle() . "</span>
+                            <span class='artistName'>" . $albumArtist->getName() . "</span>
+                        </div>
+                        <div class='trackOptions'>
+                            <img class='optionsButton' src='assets/images/icons/more.png'>
+                        </div>
+                        <div class='trackDuration'>
+                            <span class='duration'>" . $albumSong->getDuration() . "</span>
+                        </div>
+                    </li>";
+                $i = $i + 1;
+            }
+            ?>
 
-		<script>
-			var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
-			tempPlaylist = JSON.parse(tempSongIds);
-		</script>
-	</ul>
+            <script>
+                var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
+                tempPlaylist = JSON.parse(tempSongIds);
+            </script>
+        </ul>
+</div>
+
+
+
+<div class="gridViewContainer">
+    <h2>Albums</h2>
+	<?php
+		$albumQuery = mysqli_query($con, "SELECT * from albums where title like '%$term%' LIMIT 10");
+		while($row = mysqli_fetch_array($albumQuery)) {
+			echo "<div class='gridViewItem'>
+					<span role='link' tabindex='0' onclick='openPage(\"album.php?id=" . $row['id'] . "\")'>
+						<img src='" . $row['artworkPath'] . "'>
+
+						<div class='gridViewInfo'>"
+							. $row['title'] .
+						"</div>
+					</span>
+				</div>";
+		}
+	?>
 </div>
