@@ -21,8 +21,6 @@ else {
 $(".searchInput").focus();
 
 $(function() {
-	var timer;
-
 	$(".searchInput").keyup(function() {
 		clearTimeout(timer);
 
@@ -37,6 +35,8 @@ $(function() {
 })
 
 </script>
+
+<?php if($term=='') exit(); ?>
 
 <div class="tracklistContainer borderBottom">
     <h2>Songs</h2>
@@ -109,7 +109,10 @@ $(function() {
 <div class="gridViewContainer">
     <h2>Albums</h2>
 	<?php
-		$albumQuery = mysqli_query($con, "SELECT * from albums where title like '%$term%' LIMIT 10");
+        $albumQuery = mysqli_query($con, "SELECT * from albums where title like '%$term%' LIMIT 10");
+        if(mysqli_num_rows($albumQuery)==0){
+            echo "<span class='noResults'>No album found matching ".$term."</span>";
+        }
 		while($row = mysqli_fetch_array($albumQuery)) {
 			echo "<div class='gridViewItem'>
 					<span role='link' tabindex='0' onclick='openPage(\"album.php?id=" . $row['id'] . "\")'>

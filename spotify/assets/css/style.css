@@ -383,7 +383,9 @@ body {
     margin-bottom: 15px;
 }
 .trackListContainer h2,
-.gridViewContainer h2{
+.gridViewContainer h2,
+.artistContainer h2
+{
     text-align: center;
 }
 [role='link']{
