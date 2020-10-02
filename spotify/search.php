@@ -8,7 +8,7 @@
 ?>
 
 <div class="searchContainer">
-    <h4>Search for an artist</h4>
-    <input type="text" class='searchInput' placeholder="start Typing" value="<?php echo $term ?>">
+    <h4>Search for an artist,album,song</h4>
+    <input type="text" class='searchInput' placeholder="Start typing..." value="<?php echo $term ?>">
 </div>
 
