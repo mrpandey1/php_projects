@@ -359,10 +359,12 @@ body {
     color: #fff;
     margin-bottom: 7px;
 }
-.artistInfo{
+
+.artistInfo {
     text-align: center;
 }
-.button{
+
+.button {
     color: #fff;
     cursor: pointer;
     margin-bottom: 10px;
@@ -374,51 +376,74 @@ body {
     padding: 15px;
     min-width: 130px;
 }
-.button.green{
+
+.button.green {
     background-color: #2ebd59;
     border-color: #2ebd59;
 }
-.borderBottom{
+
+.borderBottom {
     border-bottom: 1px solid #939393;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
-.trackListContainer h2,
+
+.tracklistContainer h2,
 .gridViewContainer h2,
-.artistContainer h2
-{
+.artistsContainer h2 {
     text-align: center;
 }
-[role='link']{
+
+[role="link"] {
     cursor: pointer;
 }
-.searchContainer{
+
+.searchContainer {
     background-color: #242424;
     padding: 20px 28px;
 }
-.searchContainer h4{
+
+.searchContainer h4 {
     margin: 0;
     font-weight: 300;
 }
-.searchContainer .searchInput{
+
+.searchContainer .searchInput {
     width: 100%;
     background-color: transparent;
     border: none;
     color: #fff;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 32px;
+    margin-top: 15px;;
     letter-spacing: 2px;
-    margin-top: 10px;
 }
-input:focus{
+
+input:focus {
     outline: none;
 }
 
-.searchResultRow{
+.searchResultRow {
     padding: 15px 10px;
 }
-.searchResultRow:hover{
+
+.searchResultRow:hover {
     background-color: #282828;
 }
-.searchResultRow .artistName span{
+
+.searchResultRow .artistName span {
     color: #fff;
+}
+
+.noResults {
+    margin: 15px;
+    display: block;
+}
+
+.playlistsContainer{
+    padding: 10px 0;
+}
+
+.buttonItems .button{
+    display: block;
+    margin: 0 auto 20px auto;
 }
