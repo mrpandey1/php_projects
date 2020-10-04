@@ -413,8 +413,7 @@ body {
     border: none;
     color: #fff;
     font-weight: 700;
-    font-size: 32px;
-    margin-top: 15px;;
+    font-size: 62px;
     letter-spacing: 2px;
 }
 
@@ -439,11 +438,15 @@ input:focus {
     display: block;
 }
 
-.playlistsContainer{
-    padding: 10px 0;
-}
-
-.buttonItems .button{
+.buttonItems .button {
     display: block;
     margin: 0 auto 20px auto;
 }
+
+.playlistsContainer {
+    padding: 10px 0;
+}
+
+
+
+

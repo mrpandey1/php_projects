@@ -23,14 +23,22 @@ function openPage(url) {
 	history.pushState(null,null,url);
 }
 
-function createPlaylist(){
-	var alert=prompt('Please enter the name of your playlist');
+function createPlaylist() {
+	console.log(userLoggedIn);
+	var popup = prompt("Please enter the name of your playlist");
 
-	if (alert!=null){
-		$.post('includes/handlers/ajax/createPlaylist.php',{name:alert,username:userLoggedIn}).done(function(){
-			openPage('yourMusic.php');
+	if(popup != null) {
+		$.post("includes/handlers/ajax/createPlaylist.php", { name: popup, username: userLoggedIn })
+		.done(function(error) {
+			if(error != "") {
+				alert(error);
+				return;
+			}
+			openPage("yourMusic.php");
 		});
+
 	}
+
 }
 
 function playFirstSong(){
