@@ -40,6 +40,19 @@ function createPlaylist() {
 	}
 
 }
+function deletePlaylist(playlistId){
+	var prompt=confirm('Are you sure you want to delete this playlist ?');
+	if(prompt){
+		$.post("includes/handlers/ajax/deletePlaylist.php", { playlistId:playlistId })
+		.done(function(error) {
+			if(error != "") {
+				alert(error);
+				return;
+			}
+			openPage("yourMusic.php");
+		});
+	}
+}
 
 function playFirstSong(){
 	setTrack(tempPlaylist[0],tempPlaylist,true);
