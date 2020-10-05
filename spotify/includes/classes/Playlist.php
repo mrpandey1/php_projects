@@ -6,6 +6,11 @@
         private $name;
         private $owner;
 		public function __construct($con,$data) {
+			if(!is_array($data)){
+				//Id is given
+				$query=mysqli_query($con,"SELECT * from playlists where id='$data'");
+				$data=mysqli_fetch_array($query);
+			}
             $this->con = $con;
             $this->id=$data['id'];
             $this->name=$data['name'];
@@ -19,6 +24,10 @@
 		}
 		public function getOwner(){
 			return $this->owner;
+		}
+		public function getNumberOfSongs(){
+			$query=mysqli_query($this->con,"SELECT songId from playlistSongs where playlistid='$this->id'");
+			return mysqli_num_rows($query);
 		}
 	}
 ?>
