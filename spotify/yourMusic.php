@@ -7,7 +7,7 @@ include('includes/includedFiles.php');
         <h2>PlayLists</h2>
         <div class="buttonItems">
             <button class='button green' onclick="createPlaylist()">New Playlist</button>
-        </div>s
+        </div>
         <?php
         $username=$userLoggedIn->getUsername();
 		$playlistsQuery = mysqli_query($con, "SELECT * FROM playlists WHERE owner = '$username'");
