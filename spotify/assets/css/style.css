@@ -15,7 +15,25 @@ body {
     font-size: 14px;
     min-width: 720px;
 }
-
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #282828; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 #nowPlayingBarContainer {
 	width: 100%;
     background-color: #282828;
@@ -470,9 +488,16 @@ input:focus {
     color: rgba(147,147,147,0,8);
     cursor: pointer;
     height: 40px;
+    background-color: #282828;
+    font-size: 14px;
 }
 .optionsMenu .item:hover{
     color: #fff;
     background-color: #333;
     border-color: #333;
+}
+.optionsMenu select{
+    border: none;
+    --webkit-appearance:none;
+    -moz-appearance:none;
 }
