@@ -6,7 +6,7 @@ include('includes/includedFiles.php');
         <h2>Email</h2>
         <input type="text" class="email" name="email" placeholder="email address" value="<?php echo $userLoggedIn->getEmail(); ?>">
         <span class="message"></span>
-        <button class="button" onclick="">save</button>
+        <button class="button" onclick="updateEmail('email')">save</button>
     </div>
     <div class="container">
         <h2>Password</h2>
