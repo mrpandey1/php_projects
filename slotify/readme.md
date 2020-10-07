@@ -5,7 +5,7 @@
 
 ### Screenshots
 
-  <img src="https://github.com/mrpandey1/php_projects/slotify/blob/master/screenshots/1.PNG" width="90%" />
+  <img src="spotify/screenshots/1.png" width="90%" />
   <br>
   <img src="https://github.com/mrpandey1/php_projects/slotify/blob/master/screenshots/2.PNG" width="90%" />
   <br>  
