@@ -5,16 +5,16 @@
 
 ### Screenshots
 
-  <img src="spotify/screenshots/1.png" width="90%" />
+  <img src="https://github.com/mrpandey1/php_projects/blob/master/slotify/screenshots/1.png" width="90%" />
   <br>
-  <img src="https://github.com/mrpandey1/php_projects/slotify/blob/master/screenshots/2.PNG" width="90%" />
-  <br>  
-  <img src="https://github.com/mrpandey1/php_projects/slotify/blob/master/screenshots/3.PNG" width="90%" />
-  <br>  
-  <img src="https://github.com/mrpandey1/php_projects/slotify/blob/master/screenshots/4.PNG" width="90%" />
-  <br>  
-  <img src="https://github.com/mrpandey1/php_projects/slotify/blob/master/screenshots/5.PNG" width="90%" />
+  <img src="https://github.com/mrpandey1/php_projects/blob/master/slotify/screenshots/2.png" width="90%" />
   <br>
-  <img src="https://github.com/mrpandey1/php_projects/slotify/blob/master/screenshots/6.PNG" width="90%" />
+  <img src="https://github.com/mrpandey1/php_projects/blob/master/slotify/screenshots/3.png" width="90%" />
+  <br>
+  <img src="https://github.com/mrpandey1/php_projects/blob/master/slotify/screenshots/4.png" width="90%" />
+  <br>
+  <img src="https://github.com/mrpandey1/php_projects/blob/master/slotify/screenshots/5.png" width="90%" />
+  <br>
+  <img src="https://github.com/mrpandey1/php_projects/blob/master/slotify/screenshots/6.png" width="90%" />
   <br>
 
